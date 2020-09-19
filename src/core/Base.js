@@ -2,6 +2,8 @@ import React from 'react'
 import NavBar from './Nav'
 import '../styles.css'
 import Footer from './footer'
+import { ToastContainer } from 'react-toastify'
+
 
 const Base = ({
     title="",
@@ -12,6 +14,7 @@ const Base = ({
 }) => {
     return(
         <div>
+            <ToastContainer position="bottom-center"/>
             <NavBar />
             <div className="container-fluid px-0">
                 <div className="jumbotron bg-Secondary text-dark text-center my-5 my-md-3 py-md-5">

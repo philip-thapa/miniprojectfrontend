@@ -1,5 +1,4 @@
 import React from 'react'
-import { toast, ToastContainer } from 'react-toastify'
 import { isAuthenticated } from '../auth/helper'
 import Base from '../core/Base'
 import sorry from '../sorry.gif'
@@ -9,11 +8,10 @@ const UserDashboard = () => {
     
     return(
         <Base title="Dashboard" description="Welcome to user dashboard" additionalDesc="‘Fashion is a form of ugliness so intolerable that we have to alter it every six months'">
-            <ToastContainer position="bottom-center" />
             {
                 isAuthenticated() ? 
                 (
-                    <div className="bg-dark text-light p-4 border rounded" style={{height: "50vh"}}>
+                    <div className="bg-dark text-light p-4 border rounded" style={{height: "auto"}}>
                         <div className="p-4 dashboard">
                             <h3>Hello Dear, How are you? Hope you are enjoing the session...</h3>     
                             <h2>Your cart is waiting for you, checkout and enjoy our products</h2>                      

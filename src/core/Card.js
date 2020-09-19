@@ -20,16 +20,13 @@ const Card = ({
     const productDecription = product ? product.description : 'Default description'
     const produtPrice = product ? product.price : "Default price"
 
-    const notify = () => {
-        toast("Sign in to buy the products!!")
-    }
 
     const addToCartMethod = () => {
         if(isAuthenticated()){
             console.log("Addded to cart")
             addItemToCart(product,()=>setRedirect(true))
         }else{
-            return toast("Please signin to buy the products", {type: "error"})
+            return toast("Please signin to buy the products", {type: "warning"})
         }
     };
 
@@ -59,6 +56,7 @@ const Card = ({
                         onClick={()=>{
                             removeItemFromCart(product.id)
                             setReload(!reload)
+                            toast("Item removed from the cart", {type: "info"})
                             console.log("product removed from cart")
                         }}
                         className="btn btn-block btn-outline-danger my-1">
@@ -71,7 +69,7 @@ const Card = ({
     return(
 
         <div className="card text-dark bg-white border border-secondary">
-            <ToastContainer position="bottom-center"/>
+            
             <div className="card-body">
                 {getARedirect(redirect)}
                 <ImageHelper product={product}/>

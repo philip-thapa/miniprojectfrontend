@@ -1,10 +1,12 @@
 import DropIn from 'braintree-web-drop-in-react'
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { isAuthenticated, signout } from '../auth/helper'
 import { emptyCart } from './helper/cartHelper'
 import { createOrder } from './helper/orderHelper'
 import { getMeToken, processPayment } from './helper/PaymentHelper'
+
 
 const PaymentB = ({
     products,
@@ -70,6 +72,7 @@ const PaymentB = ({
                 if(response.error){
                     if(response.code == '1'){
                         console.log("Payment Failed")
+                        toast("Payment failed", {type: "error"})
                         signout(()=>{
                             return <Redirect to="/" />
                         })
@@ -95,6 +98,7 @@ const PaymentB = ({
                         if(response.error){
                             if(response.code == "1"){
                                 console.log("Order failed")
+                                toast("Order failed", {type: "error"})
                             }
                             signout(()=>{
                                 return <Redirect to="/" />
@@ -102,6 +106,8 @@ const PaymentB = ({
                         }else{
                             if(response.success == true){
                                 console.log("Order Placed")
+                                toast("Order placed sucessfully", {type: "success"})
+                                
                             }
                         }
                     })
@@ -111,6 +117,7 @@ const PaymentB = ({
                             success: false
                         })
                         console.log("ORDER FAILED ", error)
+                        toast("Order failed", {type: "error"})
                     })
                     emptyCart(()=>{
                         console.log("Cart emptied out")
@@ -121,16 +128,20 @@ const PaymentB = ({
             })
             .catch(error=>console.log(error))
         })
-        .catch(error=>console.log("NONCE: ", error))
+        .catch(error=>{
+            toast("Fill the accurate information and try again", {type: "error"})
+            console.log("NONCE: ", error)})
     }
 
     const showbtnDropIn = () => {
         return(
             <div>
+                
                 {
                     info.clientToken !== null && products.length > 0 ? 
                     (
                         <div>
+                            
                             <DropIn
                             options={{ authorization: info.clientToken}}
                             onInstance={instance => (info.instance = instance)}

@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link, withRouter} from "react-router-dom"
 import { isAuthenticated, signout } from '../auth/helper'
-import About from './about'
 import '../styles.css'
 import logo from '../logo3.png'
 
@@ -30,10 +29,15 @@ const NavBar = ({history, path}) => {
                             <Link style={currentTab(history, "/")} to="/" className="nav-link nav-custom-class">Home <span className="sr-only">(current)</span></Link>
                         </li>
 
-                        <li className="nav-item">
-                            <Link style={currentTab(history, "/cart")} className="nav-link nav-custom-class" to="/cart">Cart</Link>
-                        </li>
-
+                        {
+                            isAuthenticated() && (
+                                <li className="nav-item">
+                                    <Link style={currentTab(history, "/cart")} className="nav-link nav-custom-class" to="/cart">Cart</Link>
+                                </li>
+                            )
+                        }
+                        
+                        
                         <li className="nav-item">
                             <Link style={currentTab(history, "/user/dashboard")} className="nav-link nav-custom-class" to="/user/dashboard">Dashboard</Link>
                         </li>

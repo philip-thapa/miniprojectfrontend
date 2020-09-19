@@ -9,7 +9,6 @@ const About = () => {
     const loadAboutProject = () => {
         AboutAPI()
         .then(data=>{
-            console.log(data)
             setDetails(data)
         })
         .catch(error=>{
@@ -43,7 +42,7 @@ const About = () => {
                                 <h5 className="card-title">Bio: </h5>
                                 <p className="card-text">Hello I'm <strong>{details.TeamMembers?.member1.name}</strong></p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Roll no: <i>{details.TeamMembers?.member1.rollNo}</i></li>
                                 <li className="list-group-item">Email: <i>{details.TeamMembers?.member1.email}</i></li>
                                 <li className="list-group-item">Phone: <i>{details.TeamMembers?.member1.phone}</i></li>
@@ -63,7 +62,7 @@ const About = () => {
                                 <h5 className="card-title">Bio: </h5>
                                 <p className="card-text">Hello I'm <strong>{details.TeamMembers?.member2.name}</strong></p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Roll no: <i>{details.TeamMembers?.member2.rollNo}</i></li>
                                 <li className="list-group-item">Email: <i>{details.TeamMembers?.member2.email}</i></li>
                                 <li className="list-group-item">Phone: <i>{details.TeamMembers?.member2.phone}</i></li>
